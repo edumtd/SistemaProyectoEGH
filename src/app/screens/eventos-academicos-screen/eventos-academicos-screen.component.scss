@@ -1,0 +1,671 @@
+/* =========================
+   eventos-academicos-screen.scss
+   ========================= */
+
+.wrapper {
+  height: auto;
+}
+
+/* Encabezados usados en su HTML */
+.header-home,
+.header-home-admin {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+/* Cuerpos usados en su HTML */
+.body-alumnos,
+.body-admin {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* =========================
+   Contenedores y tabla
+   ========================= */
+.container {
+  max-width: 90vw;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* =========================
+   Alineación del texto dentro del alert
+   ========================= */
+.alert .title-table {
+  text-align: center;
+  /* Esto centra específicamente el texto dentro del alert */
+  margin: 0 auto;
+  /* Asegura que el texto esté completamente centrado */
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  min-height: 1px;
+  margin: 0 auto;
+  background: var(--table-bg, #fff);
+  border-radius: 12px;
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.07);
+}
+
+[data-theme="dark"] .table-responsive {
+  background: var(--table-bg);
+  box-shadow: 0 4px 24px 0 rgba(255, 255, 255, 0.05);
+}
+
+.table {
+  width: 100%;
+  padding-bottom: 1.5rem;
+}
+
+table {
+  width: 100%;
+  padding-bottom: 1.5rem;
+}
+
+.alert-warning {
+  font-family: Nexa;
+  font-size: 16px;
+  color: var(--text-main, #231F20);
+  text-align: center;
+  background: #FFF3CD;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.07);
+  width: 100%;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+[data-theme="dark"] .alert-warning {
+  background: #3a3a2a;
+  color: var(--text-main);
+  box-shadow: 0 4px 24px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Material Table (si aplica) */
+::ng-deep .mat-mdc-table {
+  table-layout: auto !important;
+  min-width: 800px;
+  width: 100%;
+}
+
+.mat-mdc-header-cell {
+  border-bottom-color: var(--text-main, #231F20);
+  font-family: Nexa-Bold !important;
+  font-size: 18px;
+  text-align: left;
+  letter-spacing: 0;
+  color: var(--text-main, #231F20);
+  opacity: 1;
+  white-space: nowrap;
+  padding: 12px 8px;
+}
+
+[data-theme="dark"] .mat-mdc-header-cell {
+  background: var(--table-header-bg);
+}
+
+.mat-mdc-cell {
+  text-align: left;
+  font-family: Nexa !important;
+  font-size: 15px !important;
+  letter-spacing: 0 !important;
+  color: var(--text-main, #231F20) !important;
+  opacity: 1 !important;
+  white-space: nowrap;
+  padding: 12px 8px;
+}
+
+[data-theme="dark"] ::ng-deep .mat-mdc-table {
+  background: var(--table-bg) !important;
+}
+
+[data-theme="dark"] ::ng-deep .mat-mdc-row:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Contenedor con scroll horizontal para todas las pantallas */
+.mat-elevation-z2 {
+  overflow-x: auto;
+  width: 100%;
+}
+
+/* Ajustes para móvil - solo reducir padding */
+@media (max-width: 768px) {
+  .mat-mdc-header-cell,
+  .mat-mdc-cell {
+    padding: 8px 6px;
+    font-size: 14px !important;
+  }
+
+  .mat-mdc-header-cell {
+    font-size: 15px !important;
+  }
+}
+
+/* Acciones */
+.td-editar {
+  color: #0092B8 !important;
+  cursor: pointer !important;
+  font-size: 20px !important;
+  text-align: center;
+}
+
+.td-editar:hover {
+  color: #006179 !important;
+  font-size: 25px !important;
+  text-align: center;
+}
+
+.td-eliminar {
+  color: #E84150 !important;
+  cursor: pointer !important;
+  font-size: 20px !important;
+  text-align: center;
+}
+
+.td-eliminar:hover {
+  color: #ce1626 !important;
+  font-size: 25px !important;
+  text-align: center;
+}
+
+/* =========================
+   Títulos (saludo/rol y card)
+   Tipografía fluida + control de quiebres
+   ========================= */
+.title-perfil,
+.title-table {
+  display: block;
+  /* nos permite controlar separación con margin */
+  line-height: 1.1;
+  text-wrap: balance;
+  /* evita líneas huérfanas (soporte moderno) */
+  overflow-wrap: anywhere;
+  /* defensa ante nombres muy largos */
+  letter-spacing: 0;
+  text-transform: capitalize;
+  opacity: 1;
+  font-family: Nexa-Bold;
+}
+
+/* Saludo: "Bienvenido {user}" (base desktop/tablet) */
+.title-perfil {
+  margin-left: 3rem;
+  font-size: clamp(1.375rem, 1.1rem + 1.2vw, 2.25rem);
+  /* ~22–36px */
+  text-align: left;
+  color: var(--text-main, #231F20);
+}
+
+/* Título de la card (alerta) */
+.title-table {
+  margin-left: 3rem;
+  font-size: clamp(1.125rem, 0.95rem + 0.9vw, 1.875rem);
+  /* ~18–30px */
+  text-align: center;
+  color: var(--text-main, #231F20);
+}
+
+/* =========================
+   Hotfix para el rango crítico 635–660 px
+   ========================= */
+@media (min-width: 635px) and (max-width: 660px) {
+  .title-perfil {
+    font-size: clamp(1.25rem, 0.9rem + 1vw, 1.9rem);
+    letter-spacing: -0.01em;
+  }
+
+  .title-table {
+    font-size: clamp(1.05rem, 0.85rem + 0.7vw, 1.6rem);
+  }
+}
+
+/* ===============================================================
+   Tablet chica 576–699 px  —  A la izquierda, sin separación extra
+   (ocultamos los <br> y gestionamos el gap con margin)
+   =============================================================== */
+@media (min-width: 576px) and (max-width: 699px) {
+
+  /* Suprimimos los saltos <br> que generan separación innecesaria */
+  .row.mt-5.mb-5>.col-12 br {
+    display: none;
+  }
+
+  .title-perfil,
+  .title-table {
+    text-align: left;
+    margin-left: 1.5rem;
+    /* más ancho útil en esta franja */
+  }
+
+  /* Saludo */
+  .row .col-12 .title-perfil:first-of-type {
+    font-size: clamp(1.25rem, 1.0rem + 1.1vw, 1.9rem);
+    line-height: 1.15;
+    margin-bottom: 0.4rem;
+  }
+
+  /* Rol "Administrador" (izquierda, sin centrar) */
+  .row .col-12 .title-perfil:last-of-type {
+    text-align: left;
+    font-size: clamp(1.2rem, 0.95rem + 1vw, 1.7rem);
+    line-height: 1.15;
+    margin-top: 0.25rem;
+    /* separación controlada entre títulos */
+  }
+
+  /* Anula la separación extra del contenedor Bootstrap */
+  .row.mt-5.mb-5>.col-12 {
+    margin-top: 1rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .alert .title-table {
+    margin-left: 0;
+  }
+}
+
+/* ===============================================================
+   "Bisagra" 700–740 px — IZQUIERDA y sin salto visual (caso 700 px)
+   =============================================================== */
+@media (min-width: 700px) and (max-width: 740px) {
+  .row.mt-5.mb-5>.col-12 br {
+    display: none;
+  }
+
+  /* elimina los 2 <br> */
+  .title-perfil,
+  .title-table {
+    text-align: left;
+    margin-left: 3rem;
+  }
+
+  .row .col-12 .title-perfil:first-of-type {
+    margin-bottom: 0.4rem;
+  }
+
+  .row .col-12 .title-perfil:last-of-type {
+    margin-top: 0.25rem;
+  }
+}
+
+/* =========================
+   Desktop / tablet ≥741 px
+   — Ambos títulos a la izquierda (comportamiento natural)
+   ========================= */
+@media (min-width: 741px) {
+
+  .title-perfil,
+  .title-table {
+    text-align: left;
+    margin-left: 3rem;
+  }
+
+  .row .col-12 .title-perfil:last-of-type {
+    font-size: clamp(1.25rem, 1rem + 1.1vw, 1.875rem);
+    /* ~20–30px */
+    line-height: 1.15;
+  }
+}
+
+/* ===========================================
+   Vista mobile ≤575 px (~430 px de anchura)
+   — CENTRADO
+   — Menos separación entre líneas
+   — Tamaños algo mayores
+   =========================================== */
+@media (max-width: 575px) {
+
+  /* Quitamos los <br> para controlar el gap con margin */
+  .row.mt-5.mb-5>.col-12 br {
+    display: none;
+  }
+
+  .title-perfil,
+  .title-table {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  /* Saludo: centrado, un poco mayor */
+  .row .col-12 .title-perfil:first-of-type {
+    font-size: clamp(1.35rem, 1.1rem + 1.6vw, 2rem);
+    /* ~22–32px */
+    line-height: 1.15;
+    margin-bottom: 0.35rem;
+    /* poco espacio */
+  }
+
+  /* Rol "Administrador": centrado y algo mayor */
+  .row .col-12 .title-perfil:last-of-type {
+    font-size: clamp(1.4rem, 1.15rem + 1.7vw, 2.1rem);
+    /* ~22–33px */
+    line-height: 1.15;
+    margin-top: 0.25rem;
+    /* muy pegado al saludo */
+  }
+
+  /* Compacta los espacios del bloque contenedor */
+  .row.mt-5.mb-5>.col-12 {
+    margin-top: 0.9rem !important;
+    margin-bottom: 0.7rem !important;
+  }
+
+  .alert .title-table {
+    margin: 0;
+    line-height: 1.2;
+    padding: 0 8px;
+  }
+
+  /* Tabla legible en pantallas chicas */
+  .mat-mdc-header-cell {
+    font-size: 16px;
+  }
+
+  .mat-mdc-cell {
+    font-size: 14px !important;
+    line-height: 1.25;
+  }
+
+  .table-responsive {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* =========================
+   Ajustes para tablets 805–992 px
+   (regla original preservada)
+   ========================= */
+@media (max-width: 992px) and (min-width: 805px) {
+  .container {
+    max-width: 95vw;
+    width: 130%;
+    margin: 0 auto;
+  }
+
+  .table-responsive {
+    max-width: 95vw;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .table {
+    min-width: 700px;
+    width: 100%;
+  }
+}
+
+/* =========================
+   Opcional: truncar SOLO el nombre en mobile
+   (si envuelve {{name_user}} en <strong class="user-name">)
+   ========================= */
+@media (max-width: 575px) {
+  .user-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: min(92vw, 540px);
+    display: inline-block;
+    vertical-align: bottom;
+  }
+}
+
+// Sección de bienvenida
+.welcome-section {
+  margin-bottom: 2rem;
+
+  .buap-logo {
+    font-family: 'Nexa-Bold', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: left;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+  }
+
+  .welcome-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+  }
+
+  .user-role {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    margin: 0;
+  }
+}
+
+// Sección de lista
+.list-section {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  .section-title {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+
+  // Campo de filtro Material
+  .filter-field {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 1.5rem;
+
+    mat-icon {
+      color: #667eea;
+    }
+  }
+
+  // Tabla Material
+  .mat-elevation-z8 {
+    border-radius: 8px;
+    overflow: hidden;
+
+    table {
+      width: 100%;
+
+      th {
+        background: linear-gradient(135deg, #a8c0ff 0%, #c2e9fb 100%);
+        color: #2c3e50;
+        font-weight: 600;
+        font-size: 0.9rem;
+        padding: 1rem;
+      }
+
+      td {
+        padding: 1rem;
+        color: #2c3e50;
+      }
+
+      tr:hover {
+        background-color: #f8f9fa;
+      }
+    }
+
+    // Mensaje sin resultados
+    .mat-row.mat-no-data-row {
+      td {
+        text-align: center;
+        padding: 20px;
+        color: #7f8c8d;
+      }
+    }
+
+    // Clase para mensaje sin datos
+    .no-data-message {
+      text-align: center;
+      padding: 20px;
+      color: #7f8c8d;
+    }
+  }
+
+  // Spinner centrado
+  mat-spinner {
+    margin: 0 auto;
+  }
+}
+
+// Contenedor de tabla
+.table-container {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #e1e8ed;
+}
+
+// Tabla de eventos
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+
+  thead {
+    background: linear-gradient(135deg, #a8c0ff 0%, #c2e9fb 100%);
+
+    th {
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+      color: #2c3e50;
+      font-size: 0.9rem;
+      border-bottom: 2px solid #667eea;
+      white-space: nowrap;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #e1e8ed;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #f8f9fa;
+      }
+
+      td {
+        padding: 1rem;
+        color: #2c3e50;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+// Botones de iconos
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+
+  &.btn-edit {
+    color: #3498db;
+
+    &:hover {
+      background: rgba(52, 152, 219, 0.1);
+      transform: scale(1.1);
+    }
+  }
+
+  &.btn-delete {
+    color: #e74c3c;
+
+    &:hover {
+      background: rgba(231, 76, 60, 0.1);
+      transform: scale(1.1);
+    }
+  }
+}
+
+// Spinner
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.3rem;
+}
+
+// Text center
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: #7f8c8d;
+}
+
+.py-4 {
+  padding: 2rem 0;
+}
+
+.py-5 {
+  padding: 3rem 0;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .admin-container {
+    padding: 1rem;
+  }
+
+  .welcome-section {
+    .welcome-title {
+      font-size: 1.5rem;
+    }
+
+    .user-role {
+      font-size: 1rem;
+    }
+  }
+
+  .list-section {
+    padding: 1rem;
+
+    .section-title {
+      font-size: 1.2rem;
+      padding: 1rem;
+    }
+  }
+
+  .admin-table {
+    font-size: 0.85rem;
+
+    thead th,
+    tbody td {
+      padding: 0.75rem 0.5rem;
+    }
+  }
+}
+

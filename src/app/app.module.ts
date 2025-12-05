@@ -13,6 +13,21 @@ import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-l
 import { RegistroAdminComponent } from './partials/registro-admin/registro-admin.component';
 import { RegistroAlumnosComponent } from './partials/registro-alumnos/registro-alumnos.component';
 import { RegistroMaestrosComponent } from './partials/registro-maestros/registro-maestros.component';
+import { RegistroEventosComponent } from './partials/registro-eventos/registro-eventos.component';
+
+// Screens
+import { AdministradoresScreenComponent } from './screens/administradores-screen/administradores-screen.component';
+import { MaestrosScreenComponent } from './screens/maestros-screen/maestros-screen.component';
+import { AlumnosScreenComponent } from './screens/alumnos-screen/alumnos-screen.component';
+import { GraficasScreenComponent } from './screens/graficas-screen/graficas-screen.component';
+
+// Modals
+import { EliminarUsuarioModalComponent } from './modals/eliminar-usuario-modal/eliminar-usuario-modal.component';
+import { EditarEventoModalComponent } from './modals/editar-evento-modal/editar-evento-modal.component';
+import { EliminarEventoModalComponent } from './modals/eliminar-evento-modal/eliminar-evento-modal.component';
+
+// Guards
+import { AuthGuard } from './services/auth.guard';
 
 //Angular Material
 import {MatCardModule} from '@angular/material/card';
@@ -25,11 +40,29 @@ import {MatNativeDateModule, MAT_DATE_LOCALE} from '@angular/material/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
 //Ngx-cookie-service
 import { CookieService } from 'ngx-cookie-service';
 
 // Third Party Modules
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { NgChartsModule } from 'ng2-charts';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { NavbarComponent } from './partials/navbar/navbar.component';
+import { SidebarComponent } from './partials/sidebar/sidebar.component';
+import { EventosAcademicosScreenComponent } from './screens/eventos-academicos-screen/eventos-academicos-screen.component';
+import { RegistroEventosScreenComponent } from './screens/registro-eventos-screen/registro-eventos-screen.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +73,19 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
     DashboardLayoutComponent,
     RegistroAdminComponent,
     RegistroAlumnosComponent,
-    RegistroMaestrosComponent
+    RegistroMaestrosComponent,
+    RegistroEventosComponent,
+    AdministradoresScreenComponent,
+    MaestrosScreenComponent,
+    AlumnosScreenComponent,
+    GraficasScreenComponent,
+    EliminarUsuarioModalComponent,
+    EditarEventoModalComponent,
+    EliminarEventoModalComponent,
+    NavbarComponent,
+    SidebarComponent,
+    EventosAcademicosScreenComponent,
+    RegistroEventosScreenComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +93,7 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    NgChartsModule,
     MatCardModule,
     MatIconModule,
     MatRadioModule,
@@ -58,10 +104,24 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
     MatNativeDateModule,
     MatCheckboxModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    MatTooltipModule,
+    MatChipsModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatListModule,
+    MatDividerModule,
+    NgxMaterialTimepickerModule
   ],
   providers: [
     CookieService,
+    AuthGuard,
     { provide: MAT_DATE_LOCALE, useValue: 'es-MX' },
     provideNgxMask()
   ],

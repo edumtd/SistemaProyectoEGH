@@ -9,38 +9,38 @@
 
       <mat-form-field class="mat-input" appearance="outline">
         <mat-label>ID de trabajador</mat-label>
-        <input matInput [(ngModel)]="maestro.id_trabajador" mask="000000000" name="id" placeholder="Escribe ID de trabajador">
+        <input matInput [(ngModel)]="maestro.clave_maestro" mask="000000000" name="id" aria-label="ID de trabajador">
       </mat-form-field>
-      <div *ngIf="errors.id_trabajador" class="invalid-feedback">{{ errors.id_trabajador }}</div>
+      <div *ngIf="errors.clave_maestro" class="invalid-feedback">{{ errors.clave_maestro }}</div>
 
       <mat-form-field class="mat-input" appearance="outline">
           <mat-label>Nombre</mat-label>
-          <input matInput [(ngModel)]="maestro.first_name" placeholder="Escribe nombre">
+          <input matInput [(ngModel)]="maestro.first_name" name="first_name" aria-label="Nombre">
       </mat-form-field>
       <div *ngIf="errors.first_name" class="invalid-feedback">{{ errors.first_name }}</div>
 
       <mat-form-field class="mat-input" appearance="outline">
           <mat-label>Apellidos</mat-label>
-          <input matInput [(ngModel)]="maestro.last_name" placeholder="Escribe apellidos">
+          <input matInput [(ngModel)]="maestro.last_name" name="last_name" aria-label="Apellidos">
       </mat-form-field>
       <div *ngIf="errors.last_name" class="invalid-feedback">{{ errors.last_name }}</div>
 
       <mat-form-field class="mat-input" appearance="outline">
         <mat-label>Correo electrónico</mat-label>
-        <input matInput [(ngModel)]="maestro.email" placeholder="Escribe correo electrónico" [disabled]="editar">
+        <input matInput [(ngModel)]="maestro.email" [disabled]="editar" name="email" aria-label="Correo electrónico">
       </mat-form-field>
       <div *ngIf="errors.email" class="invalid-feedback">{{ errors.email }}</div>
 
       <mat-form-field class="mat-input" appearance="outline" *ngIf="!editar">
           <mat-label>Contraseña</mat-label>
-          <input matInput [(ngModel)]="maestro.password" type="{{ inputType_1 }}" placeholder="Escribe contraseña">
+          <input matInput [(ngModel)]="maestro.password" type="{{ inputType_1 }}" name="password" aria-label="Contraseña">
           <mat-icon matSuffix class="eye-icon" (click)="showPassword()">{{hide_1 ? 'visibility_off' : 'visibility'}}</mat-icon>
       </mat-form-field>
       <div *ngIf="errors.password" class="invalid-feedback">{{ errors.password }}</div>
 
       <mat-form-field class="mat-input" appearance="outline" *ngIf="!editar">
           <mat-label>Confirmar contraseña</mat-label>
-          <input matInput [(ngModel)]="maestro.confirmar_password" type="{{ inputType_2 }}" placeholder="Confirma la contraseña">
+          <input matInput [(ngModel)]="maestro.confirmar_password" type="{{ inputType_2 }}" name="confirmar_password" aria-label="Confirmar contraseña">
           <mat-icon matSuffix class="eye-icon" (click)="showPwdConfirmar()">{{hide_2 ? 'visibility_off' : 'visibility'}}</mat-icon>
       </mat-form-field>
       <div *ngIf="errors.confirmar_password" class="invalid-feedback">{{ errors.confirmar_password }}</div>
@@ -48,7 +48,7 @@
       <!-- Cambio de input de fecha -->
       <mat-form-field class="mat-input" appearance="outline">
         <mat-label>Fecha de nacimiento</mat-label>
-        <input matInput [matDatepicker]="picker" [(ngModel)]="maestro.fecha_nacimiento" (focus)="picker.open()" placeholder="Agregar fecha" (dateChange)="changeFecha($event)" type="string">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="maestro.fecha_nacimiento" (focus)="picker.open()" readonly name="fecha_nacimiento" aria-label="Fecha de nacimiento">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -56,26 +56,26 @@
 
       <mat-form-field class="mat-input" appearance="outline">
         <mat-label>Teléfono</mat-label>
-        <input matInput [(ngModel)]="maestro.telefono" mask='(000) 000-0000' placeholder="Escribe teléfono">
+        <input matInput [(ngModel)]="maestro.telefono" mask='(000) 000-0000' name="telefono" aria-label="Teléfono">
       </mat-form-field>
       <div *ngIf="errors.telefono" class="invalid-feedback">{{ errors.telefono }}</div>
 
       <mat-form-field class="mat-input mat-hint-margin" appearance="outline">
           <mat-label>RFC</mat-label>
-          <input matInput minlength="12" maxlength="13" [(ngModel)]="maestro.rfc" placeholder="Escribe RFC" style="text-transform: uppercase;">
+          <input matInput minlength="12" maxlength="13" [(ngModel)]="maestro.rfc" class="text-uppercase" name="rfc" aria-label="RFC">
           <mat-hint align="end">{{maestro.rfc?.length || 0}}/13</mat-hint>
       </mat-form-field>
       <div *ngIf="errors.rfc" class="invalid-feedback">{{ errors.rfc }}</div>
 
       <mat-form-field class="mat-input" appearance="outline">
         <mat-label>Cubículo</mat-label>
-        <input matInput [(ngModel)]="maestro.cubiculo" placeholder="Escribe el cubículo">
+        <input matInput [(ngModel)]="maestro.cubiculo" name="cubiculo" aria-label="Cubículo">
       </mat-form-field>
       <div *ngIf="errors.cubiculo" class="invalid-feedback">{{ errors.cubiculo }}</div>
 
       <mat-form-field class="mat-input" appearance="outline">
         <mat-label>Área de investigación</mat-label>
-        <mat-select [(ngModel)]="maestro.area_investigacion">
+        <mat-select [(ngModel)]="maestro.area_investigacion" name="area_investigacion">
           <mat-option *ngFor="let area of areas" [value]="area.viewValue">
             {{area.viewValue}}
           </mat-option>
@@ -94,7 +94,7 @@
               <div class="d-checkbox-nombre">{{materia.nombre}}</div>
           </mat-checkbox>
         </div>
-        <div *ngIf="errors.materias_json" class="invalid-feedback">{{ errors.materias_json }}</div>
+        <div *ngIf="errors.materias" class="invalid-feedback">{{ errors.materias }}</div>
 
       </div>
       <div class="section-buttons">

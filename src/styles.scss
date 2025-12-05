@@ -3,6 +3,7 @@
 .table-responsive,
 table,
 .mat-elevation-z8,
+.mat-elevation-z2,
 .table {
   background: var(--table-bg, #fff) !important;
   color: var(--text-main, #222) !important;
@@ -14,9 +15,74 @@ th {
   color: var(--text-main, #222) !important;
 }
 
+// Alert components dark mode
+.alert-primary {
+  background: #cfe2ff !important;
+  color: #084298 !important;
+  border-color: #b6d4fe !important;
+}
+
+[data-theme="dark"] .alert-primary {
+  background: #1a2332 !important;
+  color: #88b3ff !important;
+  border-color: #2a3a4f !important;
+}
+
+[data-theme="dark"] .alert-warning {
+  background: #3a3a2a !important;
+  color: var(--text-main) !important;
+}
+
+// Material form fields dark mode
+[data-theme="dark"] ::ng-deep .mat-mdc-form-field {
+  color: var(--text-main) !important;
+}
+
+[data-theme="dark"] ::ng-deep .mat-mdc-text-field-wrapper {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+[data-theme="dark"] ::ng-deep .mat-mdc-form-field-input-control {
+  color: var(--text-main) !important;
+}
+
+[data-theme="dark"] ::ng-deep .mat-mdc-select-value,
+[data-theme="dark"] ::ng-deep .mat-mdc-select-arrow {
+  color: var(--text-main) !important;
+}
+
+[data-theme="dark"] ::ng-deep .mat-mdc-option {
+  background: #181a1b !important;
+  color: var(--text-main) !important;
+}
+
+[data-theme="dark"] ::ng-deep .mat-mdc-option:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+// Paginator dark mode
+[data-theme="dark"] ::ng-deep .mat-mdc-paginator {
+  background: var(--table-bg) !important;
+  color: var(--text-main) !important;
+}
+
+[data-theme="dark"] ::ng-deep .mat-mdc-paginator-container {
+  color: var(--text-main) !important;
+}
+
+// Material icons dark mode
+[data-theme="dark"] ::ng-deep .mat-icon {
+  color: var(--text-main) !important;
+}
+
+[data-theme="dark"] ::ng-deep .mat-icon-button {
+  color: var(--text-main) !important;
+}
+
 // DARK PALETTE VARIABLES (Elegant)
 
 [data-theme="dark"] {
+  --background-main: #181a1b;
   --table-bg: #181a1b;
   --table-header-bg: #222326;
   --table-header-border: #2c2d2f;
@@ -33,6 +99,7 @@ th {
 
 // LIGHT PALETTE VARIABLES (Modern)
 [data-theme="light"] {
+  --background-main: #f4f7fb;
   --table-bg: #fff;
   --table-header-bg: #cfe2ff;
   --table-header-border: #231F20;
@@ -125,15 +192,15 @@ $spacing-base: 8px;
 html {
   height: 100%;
   font-size: $font-size-base;
-  background-color: $color-bg;
-  color: $color-text;
+  background-color: var(--background-main, $color-bg);
+  color: var(--text-main, $color-text);
 }
 
 body {
   min-height: 100vh;
   font-family: $font-main;
-  background-color: $color-bg;
-  color: $color-text;
+  background-color: var(--background-main, $color-bg);
+  color: var(--text-main, $color-text);
   line-height: 1.5;
   letter-spacing: 0.01rem;
 }

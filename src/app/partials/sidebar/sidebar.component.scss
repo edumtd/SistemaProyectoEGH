@@ -1,0 +1,112 @@
+.sidebar {
+  height: 100%;
+  background: #fff;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 20px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+  color: white;
+
+  .sidebar-logo {
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .sidebar-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+}
+
+.sidebar-menu {
+  padding-top: 8px;
+
+  mat-list-item {
+    cursor: pointer;
+    margin: 4px 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: #f5f5f5;
+    }
+
+    &.active {
+      background: #e3f2fd;
+      color: #1976d2;
+
+      mat-icon {
+        color: #1976d2;
+      }
+    }
+
+    mat-icon {
+      color: #666;
+      margin-right: 12px;
+    }
+  }
+}
+
+// Estilos para dropdown
+.dropdown-item {
+  .parent-item {
+    position: relative;
+
+    .dropdown-icon {
+      position: absolute;
+      right: 16px;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  .submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding-left: 16px;
+
+    &.expanded {
+      max-height: 500px;
+    }
+
+    .child-item {
+      padding-left: 24px;
+      font-size: 0.9rem;
+
+      .child-icon {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+      }
+
+      &:hover {
+        background: #f5f5f5;
+      }
+
+      &.active {
+        background: #e3f2fd;
+        color: #1976d2;
+
+        mat-icon {
+          color: #1976d2;
+        }
+      }
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+  }
+}

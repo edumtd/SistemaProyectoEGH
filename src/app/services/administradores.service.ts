@@ -5,10 +5,13 @@ import { ErrorsService } from './tools/errors.service';
 import { ValidatorService } from './tools/validator.service';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { CookieService } from 'ngx-cookie-service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
+
+const session_cookie_name = "app-movil-escolar-token";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +22,8 @@ export class AdministradoresService {
     private http: HttpClient,
     private validatorService: ValidatorService,
     private errorService: ErrorsService,
-    private facadeService: FacadeService
+    private facadeService: FacadeService,
+    private cookieService: CookieService
   ) { }
 
   public esquemaAdmin() {
@@ -93,6 +97,12 @@ export class AdministradoresService {
 
     if(!this.validatorService.required(data["telefono"])){
       error["telefono"] = this.errorService.required;
+    } else {
+      // Remover caracteres de formato para validar solo dígitos
+      const telefonoLimpio = data["telefono"].replace(/[^0-9]/g, '');
+      if (telefonoLimpio.length !== 10) {
+        error["telefono"] = "El teléfono debe tener exactamente 10 dígitos";
+      }
     }
 
     if(!this.validatorService.required(data["ocupacion"])){
@@ -107,5 +117,50 @@ export class AdministradoresService {
   //Servicio para registrar un nuevo usuario
   public registrarAdmin (data: any): Observable <any>{
     return this.http.post<any>(`${environment.url_api}/admin/`,data, httpOptions);
+  }
+
+  //Obtener lista de administradores
+  public obtenerAdministradores(): Observable<any> {
+    const token = this.cookieService.get(session_cookie_name);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    });
+    return this.http.get<any>(`${environment.url_api}/lista-admins/`, { headers });
+  }
+
+  //Obtener un administrador por ID
+  public getAdminByID(idUser: Number): Observable<any> {
+    const token = this.cookieService.get(session_cookie_name);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    });
+    return this.http.get<any>(`${environment.url_api}/admin/?id=${idUser}`, { headers });
+  }
+
+  //Actualizar administrador
+  public actualizarAdmin(data: any): Observable<any> {
+    const token = this.cookieService.get(session_cookie_name);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    });
+    return this.http.put<any>(`${environment.url_api}/administrador-edit/`, data, { headers });
+  }
+
+  //Eliminar administrador
+  public eliminarAdmin(idUser: number): Observable<any> {
+    const token = this.cookieService.get(session_cookie_name);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    });
+    return this.http.delete<any>(`${environment.url_api}/administrador-edit/${idUser}/`, { headers });
+  }
+
+  //Servicio para obtener el total de usuarios por rol
+  public getTotalUsuarios(): Observable <any>{
+    return this.http.get<any>(`${environment.url_api}/users-total/`, httpOptions);
   }
 }

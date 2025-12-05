@@ -1,0 +1,123 @@
+<div class="wrapper main-content-admin">
+  <div class="header-home-admin">
+  </div>
+  <div class="body-admin">
+    <!-- Datos iniciales de la vista de maestros -->
+    <div class="row mt-5 mb-5">
+      <div class="col-12">
+        <span class="title-perfil">Bienvenido <strong class="user-name">{{ facadeService.getUserCompleteName() }}</strong></span>
+        <br>
+        <span class="title-perfil">{{ facadeService.getUserGroup() }}</span>
+      </div>
+    </div>
+    <!-- Comienza el contenido de maestros -->
+    <div class="container">
+      <!-- Título de la tabla de maestros -->
+      <div class="row mt-3 mb-5 text-center">
+        <div class="col-12">
+          <div class="alert alert-primary" role="alert">
+            <span class="title-table">Lista de maestros registrados</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filtro de búsqueda -->
+      <mat-form-field appearance="outline" class="w-100 mb-3">
+        <mat-label>Buscar maestro</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Nombre, clave, email, teléfono..." #input>
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <!-- Tabla de maestros con Angular Material -->
+      <ng-container *ngIf="dataSource.data.length > 0; else noData">
+        <div class="mat-elevation-z2">
+          <table mat-table [dataSource]="dataSource" matSort class="w-100">
+
+            <!-- Columna ID -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>ID Trabajador</th>
+              <td mat-cell *matCellDef="let maestro">{{ maestro.clave_maestro || 'N/A' }}</td>
+            </ng-container>
+
+            <!-- Columna Nombre -->
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre Completo</th>
+              <td mat-cell *matCellDef="let maestro">{{ maestro.user?.first_name }} {{ maestro.user?.last_name }}</td>
+            </ng-container>
+
+            <!-- Columna Email -->
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef>Email</th>
+              <td mat-cell *matCellDef="let maestro">{{ maestro.user?.email }}</td>
+            </ng-container>
+
+            <!-- Columna Teléfono -->
+            <ng-container matColumnDef="telefono">
+              <th mat-header-cell *matHeaderCellDef>Teléfono</th>
+              <td mat-cell *matCellDef="let maestro">{{ maestro.telefono || 'N/A' }}</td>
+            </ng-container>
+
+            <!-- Columna RFC -->
+            <ng-container matColumnDef="rfc">
+              <th mat-header-cell *matHeaderCellDef>RFC</th>
+              <td mat-cell *matCellDef="let maestro">{{ maestro.rfc || 'N/A' }}</td>
+            </ng-container>
+
+            <!-- Columna Cubículo -->
+            <ng-container matColumnDef="cubiculo">
+              <th mat-header-cell *matHeaderCellDef>Cubículo</th>
+              <td mat-cell *matCellDef="let maestro">{{ maestro.cubiculo || 'N/A' }}</td>
+            </ng-container>
+
+            <!-- Columna Área -->
+            <ng-container matColumnDef="area">
+              <th mat-header-cell *matHeaderCellDef>Área de Investigación</th>
+              <td mat-cell *matCellDef="let maestro">{{ maestro.area_investigacion || 'N/A' }}</td>
+            </ng-container>
+
+            <!-- Columna Acciones -->
+            <ng-container matColumnDef="acciones">
+              <th mat-header-cell *matHeaderCellDef>Acciones</th>
+              <td mat-cell *matCellDef="let maestro">
+                <button mat-icon-button color="primary" (click)="editarMaestro(maestro)" matTooltip="Editar">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="eliminarMaestro(maestro)" matTooltip="Eliminar">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <!-- Row mostrado cuando no hay resultados del filtro -->
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="8">
+                No se encontraron maestros que coincidan con "{{input.value}}"
+              </td>
+            </tr>
+          </table>
+
+          <!-- Paginador -->
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"
+                         [pageSize]="10"
+                         showFirstLastButtons
+                         aria-label="Seleccionar página de maestros">
+          </mat-paginator>
+        </div>
+      </ng-container>
+
+      <!-- Esto se muestra cuando no hay datos -->
+      <ng-template #noData>
+        <div class="row">
+          <div class="col-12">
+            <div class="alert alert-warning" role="alert">
+              No hay maestros registrados.
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

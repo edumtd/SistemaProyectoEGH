@@ -1,0 +1,743 @@
+/* ============================================================
+   AJUSTES GENERALES DEL SIDEBAR Y LAYOUT
+   ============================================================ */
+
+$sidebar-width: 220px;
+
+/* Sidebar visible en desktop */
+.main-content-graficas {
+  margin-left: $sidebar-width;
+  transition: margin-left 0.3s ease;
+
+  @media (max-width: 991px) {
+    margin-left: 0;
+  }
+}
+
+.wrapper {
+  min-height: 100vh;
+  transition: margin-left 0.3s ease;
+
+  @media (max-width: 991px) {
+    margin-left: 0;
+  }
+}
+
+/* ============================================================
+   ESTRUCTURA BASE
+   ============================================================ */
+
+.section-home,
+.body-home {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================================
+   CONTENEDOR GENERAL
+   ============================================================ */
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 1.5rem;
+
+  @media (max-width: 576px) {
+    padding: 0 0.8rem;
+  }
+}
+
+/* ============================================================
+   TIPOGRAFÍA RESPONSIVA
+   ============================================================ */
+
+.title-perfil {
+  font-family: Nexa-Bold;
+  text-transform: capitalize;
+  font-size: clamp(1.6rem, 2.3vw, 2.4rem);
+}
+
+.title-table {
+  font-family: Nexa-Bold;
+  text-transform: capitalize;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+}
+
+/* ============================================================
+   ALERTA DECORATIVA
+   ============================================================ */
+
+.alert-primary {
+  border-radius: 10px;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+}
+
+/* ============================================================
+   GRID PARA GRÁFICAS – VERSIÓN MEJORADA
+   ============================================================ */
+
+.graph-section,
+.user-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2rem; /* Aumentado para aire visual */
+  width: 100%;
+  margin-bottom: 3rem;
+
+  /* Mobile */
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  /* Tablet Vertical / Horizontal (768×1024 y 1024×768) */
+  @media (min-width: 577px) and (max-width: 1024px) {
+    grid-template-columns: 1fr; /* Una gráfica por fila */
+    gap: 2.5rem; /* Más aire para gráficas más grandes */
+  }
+
+  /* Desktop grande */
+  @media (min-width: 1440px) {
+    gap: 3rem;
+    grid-template-columns: repeat(2, 1fr); /* Dos gráficas grandes por fila */
+  }
+}
+
+/* ============================================================
+   CONTENEDOR DE CADA GRÁFICA
+   ============================================================ */
+
+.graph {
+  width: 100%;
+  max-width: 620px; /* Aumentado respecto a versión anterior */
+  margin: 0 auto;
+  padding: 1.5rem 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Tablet 768×1024 – hacer gráficas más grandes */
+  @media (min-width: 577px) and (max-width: 1024px) {
+    max-width: 90vw;   /* Se expanden casi al ancho completo */
+    padding: 2rem 0.8rem;
+  }
+
+  /* Desktop 1440 – hacerlas más llamativas */
+  @media (min-width: 1440px) {
+    max-width: 750px; /* Aumentadas en desktop */
+    padding: 2rem 1rem;
+  }
+}
+
+/* ============================================================
+   CANVAS RESPONSIVO (Chart.js)
+   ============================================================ */
+
+canvas {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100%;
+  min-height: 260px;
+  display: block;
+
+  /* Tablet */
+  @media (min-width: 577px) and (max-width: 1024px) {
+    min-height: 360px; /* Más altura = más impacto visual */
+  }
+
+  /* Desktop amplio */
+  @media (min-width: 1440px) {
+    min-height: 420px; /* Gráficas más grandes */
+  }
+}
+
+/* ============================================================
+   PREVENCIÓN DE OVERFLOW EN IOS
+   ============================================================ */
+
+body,
+html {
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   PANTALLAS ULTRA PEQUEÑAS
+   ============================================================ */
+
+@media (max-width: 350px) {
+  .graph {
+    max-width: 96vw;
+    padding: 0.5rem 0;
+  }
+}
+
+
+/* ============================================================
+   ESTRUCTURA BASE
+   ============================================================ */
+
+.section-home,
+.body-home {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================================
+   CONTENEDOR GENERAL
+   ============================================================ */
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 1.5rem;
+
+  @media (max-width: 576px) {
+    padding: 0 0.8rem;
+  }
+}
+
+/* ============================================================
+   TIPOGRAFÍA RESPONSIVA
+   ============================================================ */
+
+.title-perfil {
+  font-family: Nexa-Bold;
+  text-transform: capitalize;
+  font-size: clamp(1.6rem, 2.3vw, 2.4rem);
+}
+
+.title-table {
+  font-family: Nexa-Bold;
+  text-transform: capitalize;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+}
+
+/* ============================================================
+   ALERTA DECORATIVA
+   ============================================================ */
+
+.alert-primary {
+  border-radius: 10px;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+}
+
+/* ============================================================
+   GRID PARA GRÁFICAS – VERSIÓN MEJORADA
+   ============================================================ */
+
+.graph-section,
+.user-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2rem; /* Aumentado para aire visual */
+  width: 100%;
+  margin-bottom: 3rem;
+
+  /* Mobile */
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  /* Tablet Vertical / Horizontal (768×1024 y 1024×768) */
+  @media (min-width: 577px) and (max-width: 1024px) {
+    grid-template-columns: 1fr; /* Una gráfica por fila */
+    gap: 2.5rem; /* Más aire para gráficas más grandes */
+  }
+
+  /* Desktop grande */
+  @media (min-width: 1440px) {
+    gap: 3rem;
+    grid-template-columns: repeat(2, 1fr); /* Dos gráficas grandes por fila */
+  }
+}
+
+/* ============================================================
+   CONTENEDOR DE CADA GRÁFICA
+   ============================================================ */
+
+.graph {
+  width: 100%;
+  max-width: 620px; /* Aumentado respecto a versión anterior */
+  margin: 0 auto;
+  padding: 1.5rem 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Tablet 768×1024 – hacer gráficas más grandes */
+  @media (min-width: 577px) and (max-width: 1024px) {
+    max-width: 90vw;   /* Se expanden casi al ancho completo */
+    padding: 2rem 0.8rem;
+  }
+
+  /* Desktop 1440 – hacerlas más llamativas */
+  @media (min-width: 1440px) {
+    max-width: 750px; /* Aumentadas en desktop */
+    padding: 2rem 1rem;
+  }
+}
+
+/* ============================================================
+   CANVAS RESPONSIVO (Chart.js)
+   ============================================================ */
+
+canvas {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100%;
+  min-height: 260px;
+  display: block;
+
+  /* Tablet */
+  @media (min-width: 577px) and (max-width: 1024px) {
+    min-height: 360px; /* Más altura = más impacto visual */
+  }
+
+  /* Desktop amplio */
+  @media (min-width: 1440px) {
+    min-height: 420px; /* Gráficas más grandes */
+  }
+}
+
+/* ============================================================
+   PREVENCIÓN DE OVERFLOW EN IOS
+   ============================================================ */
+
+body,
+html {
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   PANTALLAS ULTRA PEQUEÑAS
+   ============================================================ */
+
+@media (max-width: 350px) {
+  .graph {
+    max-width: 96vw;
+    padding: 0.5rem 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .main-content-admin {
+    margin-left: 0;
+  }
+}
+
+.wrapper {
+  height: auto;
+}
+
+/* Encabezados usados en su HTML */
+.header-home,
+.header-home-admin {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+/* Cuerpos usados en su HTML */
+.body-alumnos,
+.body-admin {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* =========================
+   Contenedores
+   ========================= */
+.container {
+  max-width: 90vw;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* =========================
+   Alineación del texto dentro del alert
+   ========================= */
+.alert .title-table {
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* =========================
+   Tarjetas de estadísticas
+   ========================= */
+.stats-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.07);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.12);
+  }
+
+  .stats-icon {
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    flex-shrink: 0;
+  }
+
+  .stats-content {
+    flex: 1;
+
+    .stats-number {
+      font-family: Nexa-Bold;
+      font-size: 2.5rem;
+      margin: 0;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stats-label {
+      font-family: Nexa;
+      font-size: 1rem;
+      margin: 0;
+      opacity: 0.8;
+    }
+  }
+}
+
+/* Estilos específicos por tipo de card */
+.stats-card-total {
+  .stats-icon {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+
+  .stats-number {
+    color: #667eea;
+  }
+}
+
+.stats-card-admin {
+  .stats-icon {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+  }
+
+  .stats-number {
+    color: #f5576c;
+  }
+}
+
+.stats-card-maestros {
+  .stats-icon {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+  }
+
+  .stats-number {
+    color: #4facfe;
+  }
+}
+
+.stats-card-alumnos {
+  .stats-icon {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    color: white;
+  }
+
+  .stats-number {
+    color: #43e97b;
+  }
+}
+
+/* =========================
+   Contenedor de gráficas
+   ========================= */
+.graficas-container {
+  width: 100%;
+}
+
+.grafica-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.07);
+  margin-bottom: 2rem;
+
+  .grafica-title {
+    font-family: Nexa-Bold;
+    font-size: 1.5rem;
+    color: #231F20;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .grafica-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 8px;
+    padding: 2rem;
+
+    i {
+      font-size: 5rem;
+      color: #667eea;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-family: Nexa-Bold;
+      font-size: 1.2rem;
+      color: #231F20;
+      margin-bottom: 0.5rem;
+    }
+
+    small {
+      font-family: Nexa;
+      color: #666;
+      text-align: center;
+    }
+  }
+}
+
+/* =========================
+   Títulos (saludo/rol y card)
+   Tipografía fluida + control de quiebres
+   ========================= */
+.title-perfil,
+.title-table {
+  display: block;
+  line-height: 1.1;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+  letter-spacing: 0;
+  text-transform: capitalize;
+  opacity: 1;
+  font-family: Nexa-Bold;
+}
+
+.title-perfil {
+  margin-left: 3rem;
+  font-size: clamp(1.375rem, 1.1rem + 1.2vw, 2.25rem);
+  text-align: left;
+  color: #231F20;
+}
+
+.title-table {
+  margin-left: 3rem;
+  font-size: clamp(1.125rem, 0.95rem + 0.9vw, 1.875rem);
+  text-align: center;
+  color: #231F20;
+}
+
+/* =========================
+   Spinner y utilidades
+   ========================= */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.3rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: #7f8c8d;
+}
+
+.py-5 {
+  padding: 3rem 0;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* =========================
+   Media Queries Responsive
+   ========================= */
+
+/* Hotfix para el rango crítico 635–660 px */
+@media (min-width: 635px) and (max-width: 660px) {
+  .title-perfil {
+    font-size: clamp(1.25rem, 0.9rem + 1vw, 1.9rem);
+    letter-spacing: -0.01em;
+  }
+
+  .title-table {
+    font-size: clamp(1.05rem, 0.85rem + 0.7vw, 1.6rem);
+  }
+}
+
+/* Tablet chica 576–699 px */
+@media (min-width: 576px) and (max-width: 699px) {
+  .row.mt-5.mb-5>.col-12 br {
+    display: none;
+  }
+
+  .title-perfil,
+  .title-table {
+    text-align: left;
+    margin-left: 1.5rem;
+  }
+
+  .row .col-12 .title-perfil:first-of-type {
+    font-size: clamp(1.25rem, 1.0rem + 1.1vw, 1.9rem);
+    line-height: 1.15;
+    margin-bottom: 0.4rem;
+  }
+
+  .row .col-12 .title-perfil:last-of-type {
+    text-align: left;
+    font-size: clamp(1.2rem, 0.95rem + 1vw, 1.7rem);
+    line-height: 1.15;
+    margin-top: 0.25rem;
+  }
+
+  .row.mt-5.mb-5>.col-12 {
+    margin-top: 1rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .alert .title-table {
+    margin-left: 0;
+  }
+}
+
+/* "Bisagra" 700–740 px */
+@media (min-width: 700px) and (max-width: 740px) {
+  .row.mt-5.mb-5>.col-12 br {
+    display: none;
+  }
+
+  .title-perfil,
+  .title-table {
+    text-align: left;
+    margin-left: 3rem;
+  }
+
+  .row .col-12 .title-perfil:first-of-type {
+    margin-bottom: 0.4rem;
+  }
+
+  .row .col-12 .title-perfil:last-of-type {
+    margin-top: 0.25rem;
+  }
+}
+
+/* Desktop / tablet ≥741 px */
+@media (min-width: 741px) {
+  .title-perfil,
+  .title-table {
+    text-align: left;
+    margin-left: 3rem;
+  }
+
+  .row .col-12 .title-perfil:last-of-type {
+    font-size: clamp(1.25rem, 1rem + 1.1vw, 1.875rem);
+    line-height: 1.15;
+  }
+}
+
+/* Vista mobile ≤575 px */
+@media (max-width: 575px) {
+  .row.mt-5.mb-5>.col-12 br {
+    display: none;
+  }
+
+  .title-perfil,
+  .title-table {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .row .col-12 .title-perfil:first-of-type {
+    font-size: clamp(1.35rem, 1.1rem + 1.6vw, 2rem);
+    line-height: 1.15;
+    margin-bottom: 0.35rem;
+  }
+
+  .row .col-12 .title-perfil:last-of-type {
+    font-size: clamp(1.4rem, 1.15rem + 1.7vw, 2.1rem);
+    line-height: 1.15;
+    margin-top: 0.25rem;
+  }
+
+  .row.mt-5.mb-5>.col-12 {
+    margin-top: 0.9rem !important;
+    margin-bottom: 0.7rem !important;
+  }
+
+  .alert .title-table {
+    margin: 0;
+    line-height: 1.2;
+    padding: 0 8px;
+  }
+
+  /* Cards de estadísticas en columna */
+  .stats-card {
+    flex-direction: column;
+    text-align: center;
+
+    .stats-icon {
+      margin: 0 auto;
+    }
+
+    .stats-content {
+      text-align: center;
+    }
+  }
+
+  .user-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: min(92vw, 540px);
+    display: inline-block;
+    vertical-align: bottom;
+  }
+}
+
+/* Ajustes para tablets 805–992 px */
+@media (max-width: 992px) and (min-width: 805px) {
+  .container {
+    max-width: 95vw;
+    width: 130%;
+    margin: 0 auto;
+  }
+}
