@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MaestrosService } from 'src/app/services/maestros.service';
 import { FacadeService } from 'src/app/services/facade.service';
 import { Location } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-registro-maestros',
@@ -294,7 +295,7 @@ export class RegistroMaestrosComponent implements OnInit, OnChanges {
 
     console.log("Validación exitosa");
     console.log("Payload a enviar:", JSON.stringify(payload, null, 2));
-    console.log("URL del API:", "http://127.0.0.1:8000/api/maestro/registro/");
+    console.log("URL del API:", `${environment.url_api}/api/maestro/registro/`);
 
     // Llamar al servicio
     this.maestrosService.registrarMaestro(payload).subscribe(
@@ -312,7 +313,7 @@ export class RegistroMaestrosComponent implements OnInit, OnChanges {
         console.error("URL intentada:", error.url);
 
         if(error.status === 0){
-          alert("ERROR: No se puede conectar con el servidor. Asegúrate de que el backend esté corriendo en http://127.0.0.1:8000");
+          alert(`ERROR: No se puede conectar con el servidor. Asegúrate de que el backend esté corriendo en ${environment.url_api}`);
         } else if(error.error && error.error.message){
           alert("Error: " + error.error.message);
         } else if(error.error){

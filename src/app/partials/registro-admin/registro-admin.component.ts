@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FacadeService } from 'src/app/services/facade.service';
 import { Location } from '@angular/common';
 import { AdministradoresService } from 'src/app/services/administradores.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-registro-admin',
@@ -190,7 +191,7 @@ export class RegistroAdminComponent implements OnInit, OnChanges {
 
     console.log("Validación exitosa");
     console.log("Datos a enviar:", JSON.stringify(this.admin, null, 2));
-    console.log("URL del API:", "http://127.0.0.1:8000/api/administrador/registro/");
+    console.log("URL del API:", `${environment.url_api}/api/administrador/registro/`);
 
     // Consumir servicio para registrar administradores
     this.administradoresService.registrarAdmin(this.admin).subscribe({
@@ -211,7 +212,7 @@ export class RegistroAdminComponent implements OnInit, OnChanges {
         console.error("Error body:", error.error);
 
         if(error.status === 0){
-          alert("ERROR: No se puede conectar con el servidor. Asegúrate de que el backend esté corriendo en http://127.0.0.1:8000");
+          alert(`ERROR: No se puede conectar con el servidor. Asegúrate de que el backend esté corriendo en ${environment.url_api}`);
         } else if(error.status === 422){
           this.errors = error.error.errors;
         } else if(error.error && error.error.message){

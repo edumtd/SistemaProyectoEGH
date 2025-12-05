@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FacadeService } from 'src/app/services/facade.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login-screen',
@@ -62,7 +63,7 @@ export class LoginScreenComponent implements OnInit {
         this.load = false;
 
         if (error.status === 0) {
-          alert("ERROR: No se puede conectar con el servidor. Verifica que el backend esté corriendo en http://127.0.0.1:8000");
+          alert(`ERROR: No se puede conectar con el servidor. Verifica que el backend esté corriendo en ${environment.url_api}`);
         } else if (error.status === 401 || error.status === 400) {
           this.errors['username'] = 'Usuario o contraseña incorrectos';
         } else if (error.status === 404) {
