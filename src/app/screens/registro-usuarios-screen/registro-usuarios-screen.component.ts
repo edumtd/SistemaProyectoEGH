@@ -18,7 +18,7 @@ export class RegistroUsuariosScreenComponent implements OnInit {
   public rol:string = "";
   public idUser:number = 0;
 
-  //Banderas para el tipo de usuario
+  //Banderas para el tipo de usuario a registrar
   public isAdmin:boolean = false;
   public isAlumno:boolean = false;
   public isMaestro:boolean = false;

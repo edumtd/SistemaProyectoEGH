@@ -78,7 +78,7 @@ export class AdministradoresScreenComponent implements OnInit {
   }
 
   public eliminarAdministrador(admin: any): void {
-    // Validar permisos - solo administradores pueden eliminar administradores
+    // Validar permisos - solo administradores pueden eliminar administradores aquí
     const userRole = this.facadeService.getUserGroup();
 
     if (userRole === 'Maestro') {

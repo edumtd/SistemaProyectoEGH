@@ -1,8 +1,8 @@
-# Sistema de Gestión Escolar
+# Sistema de Gestión Escolar.
 
 Sistema web desarrollado como proyecto escolar para la gestión integral de una institución educativa, permitiendo administrar usuarios, eventos académicos y generar reportes estadísticos.
 
-## Descripción del Proyecto
+## Descripción del Proyecto.
 
 Este proyecto fue desarrollado con la guía del profesor como parte del aprendizaje de tecnologías web modernas. El sistema permite gestionar tres tipos de usuarios (administradores, maestros y alumnos) y facilita la organización de eventos académicos de la institución.
 
@@ -182,6 +182,6 @@ Limpia las cookies del navegador e intenta iniciar sesión nuevamente.
 - Los roles de usuario son: Administrador, Maestro, Alumno
 - Se implementó lazy loading para optimizar la carga
 
-## Contacto
+## Contactos
 
 Para dudas o sugerencias sobre el proyecto, contactar al desarrollador o al profesor responsable.
