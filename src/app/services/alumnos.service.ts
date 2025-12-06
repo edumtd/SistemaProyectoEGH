@@ -106,7 +106,7 @@ export class AlumnosService {
     if (!this.validatorService.required(data["telefono"])) {
       error["telefono"] = this.errorService.required;
     } else {
-      // Remover caracteres de formato para validar solo dígitos
+      // Remover caracteres de formato para validar solo dígitos del teléfono
       const telefonoLimpio = data["telefono"].replace(/[^0-9]/g, '');
       if (telefonoLimpio.length !== 10) {
         error["telefono"] = "El teléfono debe tener exactamente 10 dígitos";

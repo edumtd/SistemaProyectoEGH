@@ -15,7 +15,7 @@ export class RegistroAlumnosComponent implements OnInit, OnChanges {
   @Input() rol: string = "";
   @Input() datos_user: any = {};
 
-  //Para contraseñas
+  //Para contraseñas de mostrar/ocultar
   public hide_1: boolean = false;
   public hide_2: boolean = false;
   public inputType_1: string = 'password';
