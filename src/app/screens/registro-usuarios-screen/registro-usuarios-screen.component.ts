@@ -29,15 +29,13 @@ export class RegistroUsuariosScreenComponent implements OnInit {
   public user : any = {};
 
   // Propiedades computadas para verificar permisos
-  get canRegisterAdmin(): boolean {
+  canRegisterAdmin(): boolean {
     const userRole = this.facadeService.getUserGroup();
-    console.log("canRegisterAdmin - userRole:", userRole);
     return !userRole || userRole === 'Administrador';
   }
 
-  get canRegisterMaestro(): boolean {
+  canRegisterMaestro(): boolean {
     const userRole = this.facadeService.getUserGroup();
-    console.log("canRegisterMaestro - userRole:", userRole);
     return !userRole || userRole === 'Administrador' || userRole === 'Maestro';
   }
 
@@ -51,16 +49,8 @@ export class RegistroUsuariosScreenComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Debug: Verificar el rol del usuario
-    console.log("DEBUG - Rol del usuario:", this.facadeService.getUserGroup());
-    console.log("DEBUG - Tipo de dato:", typeof this.facadeService.getUserGroup());
-
-    // Detectar si viene del modo editar
     this.activatedRoute.queryParams.subscribe(params => {
       if(params['id'] && params['tipo'] && params['editar']){
-        console.log("MODO EDITAR detectado");
-        console.log("ID:", params['id']);
-        console.log("Tipo:", params['tipo']);
 
         this.editar = true;
         this.idUser = parseInt(params['id']);

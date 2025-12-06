@@ -35,36 +35,18 @@ export class EstadisticasService {
       'Authorization': `Bearer ${token}`
     });
 
-    console.log("Token encontrado:", token ? "Sí" : "No");
-
-    // Hacer 3 llamadas en paralelo a los endpoints existentes
     return forkJoin({
       admins: this.http.get<any[]>(`${environment.url_api}/lista-admins/`, { headers }).pipe(
-        catchError((error) => {
-          console.error("Error en /lista-admins/:", error.status);
-          return of([]);
-        })
+        catchError(() => of([]))
       ),
       maestros: this.http.get<any[]>(`${environment.url_api}/lista-maestros/`, { headers }).pipe(
-        catchError((error) => {
-          console.error("Error en /lista-maestros/:", error.status);
-          return of([]);
-        })
+        catchError(() => of([]))
       ),
       alumnos: this.http.get<any[]>(`${environment.url_api}/lista-alumnos/`, { headers }).pipe(
-        catchError((error) => {
-          console.error("Error en /lista-alumnos/:", error.status);
-          return of([]);
-        })
+        catchError(() => of([]))
       )
     }).pipe(
       map(result => {
-        console.log("Resultado forkJoin:", {
-          admins: result.admins.length,
-          maestros: result.maestros.length,
-          alumnos: result.alumnos.length
-        });
-
         return {
           admins: result.admins?.length || 0,
           maestros: result.maestros?.length || 0,

@@ -73,7 +73,6 @@ export class ValidatorService {
 
   words(input:any){
     let pat = new RegExp('^([A-Za-zÑñáéíóúÁÉÍÓÚ ]+)$');
-    console.log(pat.test(input), input);
     return pat.test(input);
   }
   // public isEmail(email:string):boolean{

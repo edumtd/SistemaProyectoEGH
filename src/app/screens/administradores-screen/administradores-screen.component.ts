@@ -29,15 +29,8 @@ export class AdministradoresScreenComponent implements OnInit {
   public obtenerAdministradores(): void {
     this.isLoading = true;
 
-    // Debug: Verificar token
-    const token = this.facadeService.getSessionToken(); //Busca la cookie y devuelve el token si existe
-    console.log("Token actual:", token ? "Existe" : "NO existe");
-    console.log("Longitud del token:", token ? token.length : 0);
-
     this.facadeService.obtenerAdministradores().subscribe(
       (response) => {
-        console.log("Administradores obtenidos:", response);
-        console.log("Total de administradores:", response ? response.length : 0);
 
         if (response && response.length > 0) {
           this.administradores = response;

@@ -38,7 +38,6 @@ export class FacadeService {
       "username": username,
       "password": password
     };
-    console.log("Valindando login con datos: ", data);
 
     let error: any = {};
 

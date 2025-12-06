@@ -35,7 +35,6 @@ export class EventosService {
   }
 
   public validarEvento(data: any, editar: boolean) {
-    console.log('Validando evento...', data);
     let error: any = {};
 
     if (!this.validatorService.required(data['nombre_evento'])) {

@@ -44,7 +44,6 @@ export class AdministradoresService {
 
   //Validación para el formulario
   public validarAdmin(data: any, editar: boolean) {
-    console.log("Validando admin... ", data);
     let error: any = {};
     //Validaciones
     if (!this.validatorService.required(data["clave_admin"])) {

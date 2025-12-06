@@ -76,7 +76,6 @@ export class RegistroEventosComponent implements OnInit {
       if (params['id']) {
         this.editar = true;
         this.idEvento = Number(params['id']);
-        console.log('ID Evento: ', this.idEvento);
         this.obtenerEvento();
       } else {
         this.evento = this.eventosService.esquemaEvento();
@@ -84,8 +83,6 @@ export class RegistroEventosComponent implements OnInit {
         this.evento.publico_objetivo = [];
       }
     });
-
-    console.log('Evento: ', this.evento);
   }
 
   public registrar() {
@@ -97,7 +94,6 @@ export class RegistroEventosComponent implements OnInit {
 
     this.errors = this.eventosService.validarEvento(this.evento, this.editar);
     if (Object.keys(this.errors).length > 0) {
-      console.error('Errores de validación:', this.errors);
       return false;
     }
 
@@ -106,12 +102,9 @@ export class RegistroEventosComponent implements OnInit {
       publico_objetivo: JSON.stringify(this.evento.publico_objetivo)
     };
 
-    console.log('Datos que se enviarán al backend:', eventoParaEnviar);
-
     this.eventosService.registrarEvento(eventoParaEnviar).subscribe({
       next: (response: any) => {
         alert('Evento registrado con éxito');
-        console.log('Evento registrado', response);
 
         if (this.token && this.token != '') {
           this.router.navigate(['eventos-academicos']);
@@ -120,11 +113,6 @@ export class RegistroEventosComponent implements OnInit {
         }
       },
       error: (error: any) => {
-        console.error('Error completo:', error);
-        console.error('Status:', error.status);
-        console.error('Mensaje:', error.message);
-        console.error('Error body:', error.error);
-
         if (error.status === 422) {
           this.errors = error.error.errors;
         } else {
@@ -170,15 +158,9 @@ export class RegistroEventosComponent implements OnInit {
         this.eventosService.actualizarEvento(this.idEvento, eventoParaEnviar).subscribe(
           (response) => {
             alert('Evento actualizado exitosamente');
-            console.log('Evento actualizado: ', response);
             this.router.navigate(['eventos-academicos']);
           },
           (error) => {
-            console.error('Error completo al actualizar:', error);
-            console.error('Status:', error.status);
-            console.error('Message:', error.message);
-            console.error('Error body:', error.error);
-
             if (error.status === 400) {
               alert('Error: Datos inválidos. Revisa los campos del formulario.');
             } else if (error.status === 404) {
@@ -197,18 +179,15 @@ export class RegistroEventosComponent implements OnInit {
   }
 
   public checkboxChange(event: any) {
-    console.log('Evento: ', event);
     if (event.checked) {
       this.evento.publico_objetivo.push(event.source.value);
     } else {
-      console.log(event.source.value);
       this.evento.publico_objetivo.forEach((publico: string, i: number) => {
         if (publico == event.source.value) {
           this.evento.publico_objetivo.splice(i, 1);
         }
       });
     }
-    console.log('Array publico_objetivo: ', this.evento);
 
     if (!this.evento.publico_objetivo.includes('Estudiantes')) {
       this.evento.programa_educativo = '';
@@ -264,7 +243,6 @@ export class RegistroEventosComponent implements OnInit {
   public obtenerEvento() {
     this.eventosService.getEventoById(this.idEvento).subscribe(
       (response) => {
-        console.log('Evento obtenido:', response);
         this.evento = response;
 
         // Convertir publico_objetivo de string JSON a array
@@ -276,7 +254,6 @@ export class RegistroEventosComponent implements OnInit {
             }
             this.evento.publico_objetivo = parsed;
           } catch (error) {
-            console.error('Error al parsear publico_objetivo:', error);
             this.evento.publico_objetivo = [];
           }
         }
@@ -303,11 +280,8 @@ export class RegistroEventosComponent implements OnInit {
         if (!this.evento.programa_educativo) {
           this.evento.programa_educativo = '';
         }
-
-        console.log('Evento procesado para edición:', this.evento);
       },
       (error) => {
-        console.error('Error al obtener evento:', error);
         alert('No se pudo cargar la información del evento');
       }
     );
@@ -318,10 +292,7 @@ export class RegistroEventosComponent implements OnInit {
   }
 
   public changeFecha(event: any) {
-    console.log(event);
-    console.log(event.value.toISOString());
     this.evento.fecha_realizacion = event.value.toISOString().split('T')[0];
-    console.log('Fecha: ', this.evento.fecha_realizacion);
   }
 
   public soloLetrasYNumeros(event: KeyboardEvent) {

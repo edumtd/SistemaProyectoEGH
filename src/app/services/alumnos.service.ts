@@ -47,7 +47,6 @@ export class AlumnosService {
   }
 
   public validarAlumno(data: any, editar: boolean) {
-    console.log("Validando alumno... ", data);
     let error: any = {};
 
     if (!this.validatorService.required(data["matricula"])) {
