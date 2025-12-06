@@ -20,7 +20,7 @@ export class RegistroEventosComponent implements OnInit {
   public idEvento: number = 0;
   public token: string = "";
 
-  // Tema para el timepicker
+  // Tema para el timepicker reloj
   public timePickerTheme: NgxMaterialTimepickerTheme = {
     container: {
       bodyBackgroundColor: '#fff',
