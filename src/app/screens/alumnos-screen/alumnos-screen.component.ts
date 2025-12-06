@@ -31,7 +31,7 @@ export class AlumnosScreenComponent implements OnInit, AfterViewInit {
   ) {
     this.dataSource = new MatTableDataSource(this.alumnos);
 
-    // Configurar ordenamiento personalizado para datos anidados
+    // Configurar ordenamiento personalizado para datos anidados en el dataSource
     this.dataSource.sortingDataAccessor = (item: any, property: string) => {
       switch (property) {
         case 'nombre':
