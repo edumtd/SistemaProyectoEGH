@@ -108,7 +108,7 @@ export class AdministradoresService {
       error["ocupacion"] = this.errorService.required;
     }
 
-    //Return arreglo
+    //Return arreglo de errores
     return error;
   }
 

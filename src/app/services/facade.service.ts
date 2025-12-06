@@ -10,7 +10,7 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-//Estas son variables para las cookies
+//Estas son variables para las cookies de sesión
 const session_cookie_name = 'app-movil-escolar-token';
 const user_email_cookie_name = 'app-movil-escolar-email';
 const user_id_cookie_name = 'app-movil-escolar-user_id';

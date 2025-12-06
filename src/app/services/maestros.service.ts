@@ -11,7 +11,7 @@ const httpOptions = {
 };
 
 const session_cookie_name = 'app-movil-escolar-token';
-
+// Servicio para manejar operaciones relacionadas con maestros
 @Injectable({
   providedIn: 'root'
 })

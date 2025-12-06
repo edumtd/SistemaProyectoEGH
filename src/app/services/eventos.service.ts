@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { FacadeService } from './facade.service';
 import { ValidatorService } from './tools/validator.service';
 import { ErrorsService } from './tools/errors.service';
-
+// Definición de opciones HTTP con encabezados JSON
 @Injectable({
   providedIn: 'root'
 })

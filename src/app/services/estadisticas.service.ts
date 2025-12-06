@@ -17,7 +17,7 @@ export class EstadisticasService {
   ) { }
 
   /**
-   * Obtiene el token de sesión de las cookies
+   * Obtiene el token de sesión de las cookies de navegador
    */
   private getSessionToken(): string {
     return this.cookieService.get('app-movil-escolar-token');

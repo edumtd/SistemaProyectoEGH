@@ -7,7 +7,7 @@ export class ValidatorService {
 
   constructor() { }
 
-  /**Funciones para las validaciones de los formulario*/
+  /**Funciones para las validaciones de los formulario de entrada*/
   required(input:any){
     return (input != undefined && input != null && input != "" && input.toString().trim().length > 0);
   }
